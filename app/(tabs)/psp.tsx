@@ -6,13 +6,13 @@ import { WebView } from "react-native-webview";
 const Psp = () => {
   const [isWebViewVisible, setWebViewVisible] = useState(false);
 
-  //   const openWebView = () => {
-  //     setWebViewVisible(true);
-  //   };
+    const openWebView = () => {
+      setWebViewVisible(true);
+    };
 
-  //   const closeWebView = () => {
-  //     setWebViewVisible(false);
-  //   };
+    const closeWebView = () => {
+      setWebViewVisible(false);
+    };
 
   const toggleWebView = () => {
     isWebViewVisible ? setWebViewVisible(false) : setWebViewVisible(true);
@@ -22,10 +22,8 @@ const Psp = () => {
     <View style={styles.container}>
       <Pressable
         // title="Open Web View"
-        onPress={() => {
-          toggleWebView();
-          console.log("isVisible", isWebViewVisible);
-        }}
+        hitSlop={10}
+        onPress={openWebView}
       >
         <Text style={{ color: 'white' }}>Open</Text>
       </Pressable>
@@ -34,10 +32,10 @@ const Psp = () => {
       <Modal
         visible={isWebViewVisible}
         animationType="slide"
-        onRequestClose={toggleWebView}
+        onRequestClose={closeWebView}
       >
         <View style={styles.modalContainer}>
-          <Button title="Close" onPress={toggleWebView} />
+          <Button title="Close" onPress={closeWebView} />
           <WebView
             source={{ uri: "https://example.com" }}
             style={styles.webview}
